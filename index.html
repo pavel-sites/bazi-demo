@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бацзы-аналитика – консультации {{Имя Фамилия}}</title>
+<meta name="description" content="Разбор карты бацзы по дате рождения: ресурс, деньги, власть, периоды. Без гадания и эзотерики – понятный язык и конкретный план. Онлайн и лично.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Бацзы-аналитика для предпринимателей: без гадания, с планом">
+<meta property="og:description" content="Разбор карты по дате рождения на понятном языке. Итог консультации – конкретный план.">
+<meta property="og:image" content="{{ссылка-сайта}}/assets/og.jpg">
+<meta property="og:url" content="{{ссылка-сайта}}">
+<meta name="theme-color" content="#1c2520">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c2520'/%3E%3Cg fill='%23d09a48'%3E%3Crect x='6' y='8' width='3.4' height='16' rx='1'/%3E%3Crect x='11.6' y='8' width='3.4' height='16' rx='1'/%3E%3Crect x='17.2' y='8' width='3.4' height='16' rx='1'/%3E%3Crect x='22.8' y='8' width='3.4' height='16' rx='1'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap&text=%E5%A3%AC%E7%94%B3%E7%94%B2%E5%AD%90%E5%B7%B1%E5%8D%AF%E5%BA%9A%E5%8D%88" rel="stylesheet">
+<link rel="stylesheet" href="vibe.css">
+<style>
+html, body { background: #1c2520; }
+
+.v-page {
+  --v-canvas: #1c2520;
+  --v-surface: #27312b;
+  --v-ink: #ede7da;
+  --v-ink-soft: #afa898;
+  --v-accent: #d09a48;
+  --v-accent-ink: #1b1710;
+  --v-shadow-color: 8 12 10;
+  --v-font-display: "Tenor Sans", "Georgia", serif;
+  --v-font-text: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  --v-display-weight: 400;
+  --v-t-sm: clamp(0.94rem, 0.9rem + 0.18vw, 1rem);
+  --v-section: clamp(4rem, 9vw, 8rem);
+  --v-measure: 62ch;
+  --hanzi: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  /* пять стихий: только на схемах */
+  --el-wood: #7d9a68;
+  --el-fire: #c26a4a;
+  --el-earth: #c29a5c;
+  --el-metal: #b7bcb8;
+  --el-water: #6f93a8;
+  line-height: 1.65;
+  letter-spacing: .005em;
+}
+.v-page .v-display { letter-spacing: -0.01em; }
+.v-page h2.v-display { font-size: var(--v-t-2xl); line-height: 1.08; }
+.v-page .v-lede { max-width: 38ch; color: var(--v-ink); }
+.v-page .muted { color: var(--v-ink-soft); }
+.v-page .kicker { font-size: var(--v-t-sm); color: var(--v-accent); letter-spacing: .01em; }
+.v-page .v-btn { font-size: var(--v-t-sm); }
+.v-page button.v-btn { background: var(--v-accent); color: var(--v-accent-ink); }
+.v-page .row { display: flex; flex-wrap: wrap; gap: var(--v-3) var(--v-4); align-items: center; }
+
+/* ---------- шапка ---------- */
+.bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 30;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--v-5);
+  padding: .9rem var(--v-gutter);
+  transition: background-color .3s var(--v-ease-out), box-shadow .3s var(--v-ease-out);
+}
+.bar.is-scrolled { background: rgb(28 37 32 / .86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--v-hair); }
+.bar__brand { text-decoration: none; display: flex; flex-direction: column; line-height: 1.2; }
+.bar__name { font-family: var(--v-font-display); font-size: 1.12rem; }
+.bar__role { font-size: var(--v-t-xs); color: var(--v-ink-soft); }
+.bar__nav { display: flex; gap: var(--v-5); font-size: var(--v-t-sm); }
+.bar__nav a { text-decoration: none; color: var(--v-ink-soft); transition: color .16s var(--v-ease-out); }
+.bar__nav a:hover { color: var(--v-ink); }
+.bar .v-btn { padding: .7em 1.2em; }
+@media (max-width: 1020px) { .bar__nav { display: none; } }
+@media (max-width: 520px) { .bar .v-btn { display: none; } }
+
+/* ---------- 1. hero ---------- */
+.hero__back picture img { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; object-fit: cover; object-position: 70% 50%; max-width: none; }
+.hero .v-scrim--lead { background: radial-gradient(110% 95% at 0% 100%, rgb(14 20 17 / .9) 0%, rgb(14 20 17 / .55) 42%, transparent 72%); }
+.hero__col { position: absolute; inset: 0 auto 0 0; width: 58%; z-index: 2; background: linear-gradient(to right, rgb(22 30 26 / .62), rgb(22 30 26 / 0)); pointer-events: none; }
+.hero .v-copy { max-width: min(54rem, 90vw); }
+.hero h1 { font-size: clamp(2.2rem, 1.2rem + 3vw, 3.9rem); line-height: 1.04; }
+.hero .v-lede { margin-top: var(--v-5); }
+.hero .row { margin-top: var(--v-6); }
+.hero__note { margin-top: var(--v-4); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+
+.pillars { margin-top: var(--v-6); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.5rem, 1.4vw, 1.1rem); max-width: 40rem; }
+.pillar { border-top: 1px solid var(--v-hair-strong); padding-top: var(--v-3); }
+.pillar__name { font-size: var(--v-t-sm); color: var(--v-accent); }
+.pillar__hz { font-family: var(--hanzi); font-weight: 500; font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.6rem); line-height: 1.2; margin: var(--v-2) 0; display: flex; flex-direction: column; }
+.pillar__hz span:first-child { color: var(--v-ink); }
+.pillar__hz span:last-child { color: var(--v-ink-soft); }
+.pillar__txt { font-size: var(--v-t-sm); color: var(--v-ink-soft); line-height: 1.45; }
+.pillars__cap { margin-top: var(--v-5); font-size: var(--v-t-sm); color: var(--v-ink-soft); max-width: 58ch; }
+@media (max-width: 860px) {
+  .hero__col { width: 100%; background: linear-gradient(to top, rgb(22 30 26 / .75), rgb(22 30 26 / 0) 70%); }
+  .hero__back picture img { object-position: 50% 30%; }
+  .hero .v-copy--lead { bottom: clamp(1.5rem, 6vh, 3rem); }
+  .hero .row .v-btn--ghost { display: none; }
+}
+
+/* ---------- 2. пять сил (фирменный ход) ---------- */
+.forces__in {
+  height: 100%; width: min(100% - 2 * var(--v-gutter), 76rem); margin-inline: auto;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-areas: "head fig" "cues fig"; align-content: center; column-gap: clamp(2rem, 6vw, 6rem);
+  padding-top: 4.5rem;
+}
+.forces__head { grid-area: head; align-self: end; }
+.forces__head .v-lede { margin-top: var(--v-4); font-size: var(--v-t-base); color: var(--v-ink-soft); max-width: 42ch; }
+.forces__fig { grid-area: fig; align-self: center; }
+.forces__fig svg { width: 100%; height: auto; max-height: 76svh; display: block; margin-inline: auto; overflow: visible; }
+.forces__cues { grid-area: cues; position: relative; min-height: 15rem; margin-top: var(--v-7); }
+.fcue { position: absolute; inset: 0 0 auto 0; }
+.fcue h3 { font-family: var(--v-font-display); font-weight: 400; font-size: var(--v-t-xl); line-height: 1.15; display: flex; align-items: center; gap: .55em; }
+.fcue h3 i { width: .55em; height: .55em; border-radius: 50%; background: var(--c); flex: none; }
+.fcue p { margin-top: var(--v-3); max-width: 40ch; }
+.fcue .fcue__q { margin-top: var(--v-3); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+
+.fz .ring { fill: none; stroke: var(--v-hair-strong); stroke-width: 1; }
+.fz .cycle { fill: none; stroke: var(--v-hair-strong); stroke-width: 1.2; }
+.fz .star { fill: none; stroke: var(--v-hair); stroke-width: 1; stroke-dasharray: 3 6; }
+.fz .spoke { stroke: var(--v-hair); stroke-width: 1; transition: stroke .3s var(--v-ease-out), stroke-width .3s var(--v-ease-out), opacity .3s; }
+.fz .node circle { fill: var(--v-canvas); stroke: var(--c); stroke-width: 1.5; transition: fill .3s var(--v-ease-out), transform .3s var(--v-ease-out); transform-box: fill-box; transform-origin: center; }
+.fz .node text { fill: var(--v-ink-soft); font-family: var(--v-font-text); font-size: 15px; text-anchor: middle; transition: fill .3s var(--v-ease-out); }
+.fz .node .el { font-size: 12px; fill: var(--v-ink-soft); opacity: .8; }
+.fz .me circle { fill: var(--v-surface); stroke: var(--v-accent); stroke-width: 1.5; }
+.fz .me text { fill: var(--v-ink); font-family: var(--v-font-display); font-size: 26px; text-anchor: middle; dominant-baseline: central; }
+.fz .node.is-on circle { fill: var(--c); transform: scale(1.18); }
+.fz .node.is-on text { fill: var(--v-ink); }
+.fz .node.is-on .el { fill: var(--v-ink-soft); }
+.fz .spoke.is-on { stroke: var(--v-accent); stroke-width: 2; }
+.fz .flow-dot { fill: var(--v-accent); opacity: 0; transition: opacity .3s; }
+.fz .flow-dot.is-on { opacity: 1; }
+
+@media (max-width: 860px) {
+  .forces__in { grid-template-columns: 1fr; grid-template-areas: "head" "fig" "cues"; align-content: start; row-gap: var(--v-4); padding-top: 4.6rem; }
+  .forces__head h2.v-display { font-size: var(--v-t-xl); }
+  .forces__head .v-lede { display: none; }
+  .forces__fig svg { max-height: 36svh; }
+  .forces__cues { margin-top: 0; min-height: 13rem; }
+  .fcue h3 { font-size: var(--v-t-lg); }
+}
+@media (max-width: 860px) and (max-height: 700px) { .fcue .fcue__q { display: none; } .forces__fig svg { max-height: 30svh; } }
+
+/* ---------- 3. с чем приходят ---------- */
+.asks { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--v-7) clamp(2rem, 6vw, 6rem); align-items: start; }
+.asks__head { position: sticky; top: 7rem; display: flex; flex-direction: column; gap: var(--v-4); }
+.asks__list li { font-family: var(--v-font-display); font-size: var(--v-t-xl); line-height: 1.22; padding: var(--v-5) 0; border-top: 1px solid var(--v-hair); text-wrap: balance; }
+.asks__list li:last-child { border-bottom: 1px solid var(--v-hair); }
+.asks__list li span { display: block; margin-top: var(--v-2); font-family: var(--v-font-text); font-size: var(--v-t-sm); color: var(--v-ink-soft); line-height: 1.5; }
+@media (max-width: 860px) { .asks { grid-template-columns: 1fr; } .asks__head { position: static; } }
+
+/* ---------- 4. для мужчин ---------- */
+.men .v-fill img { object-position: 70% 50%; }
+.men .v-scrim--lead { background: linear-gradient(to right, rgb(20 18 15 / .92) 0%, rgb(20 18 15 / .7) 36%, transparent 68%); }
+.men .v-copy--lead { top: 4.5rem; bottom: 0; display: flex; flex-direction: column; justify-content: center; max-width: min(36rem, 90vw); }
+.men .v-copy > * + * { margin-top: var(--v-4); }
+.men .v-copy > .v-btn { align-self: flex-start; }
+.men__list { display: grid; gap: var(--v-3); font-size: var(--v-t-sm); }
+.men__list li { padding-left: 1.2em; position: relative; }
+.men__list li::before { content: ""; position: absolute; left: 0; top: .72em; width: .5em; height: 1px; background: var(--v-accent); }
+.men .v-btn { margin-top: var(--v-5); }
+@media (max-width: 860px) {
+  .men .v-copy--lead { top: auto; bottom: 5.75rem; display: block; }
+  .men .v-copy > * + * { margin-top: var(--v-3); }
+  .men .v-btn { margin-top: var(--v-4); }
+  .men .v-scrim--lead { background: linear-gradient(to top, rgb(20 18 15 / .95) 0%, rgb(20 18 15 / .78) 52%, transparent 82%); }
+  .men .v-fill img { object-position: 78% 40%; }
+}
+
+/* ---------- 5. бизнес ---------- */
+.biz { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--v-7) clamp(2rem, 6vw, 6rem); }
+.biz__head { display: flex; flex-direction: column; gap: var(--v-4); }
+.biz__q li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: var(--v-4); padding: var(--v-4) 0; border-top: 1px solid var(--v-hair); }
+.biz__q li:last-child { border-bottom: 1px solid var(--v-hair); }
+.biz__q b { font-weight: 500; }
+.biz__q span { color: var(--v-ink-soft); font-size: var(--v-t-sm); }
+.biz__rival { margin-top: var(--v-6); padding: var(--v-5); border-radius: var(--v-radius); background: var(--v-surface); box-shadow: var(--v-edge); }
+.biz__rival p + p { margin-top: var(--v-2); }
+@media (max-width: 860px) { .biz { grid-template-columns: 1fr; } .biz__q li { grid-template-columns: 1fr; gap: var(--v-1); } }
+
+/* ---------- 6. форматы ---------- */
+.formats [data-v-stage] { display: flex; align-items: center; }
+.formats .rail { padding: 5rem var(--v-gutter) 2rem; align-items: stretch; }
+.fmt { width: clamp(18.5rem, 27vw, 24rem); flex: none; display: flex; flex-direction: column; gap: var(--v-4); padding: var(--v-6) var(--v-5); border-radius: var(--v-radius); background: var(--v-surface); box-shadow: var(--v-edge), var(--v-e1); }
+.fmt--intro { background: none; box-shadow: none; padding-left: 0; justify-content: center; width: clamp(18rem, 30vw, 26rem); }
+.fmt--men { background: #2e2a24; box-shadow: var(--v-edge), inset 0 0 0 1px rgb(208 154 72 / .35), var(--v-e1); }
+.fmt h3 { font-family: var(--v-font-display); font-weight: 400; font-size: var(--v-t-xl); line-height: 1.12; }
+.fmt ul { display: grid; gap: var(--v-2); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+.fmt li { padding-left: 1.1em; position: relative; }
+.fmt li::before { content: ""; position: absolute; left: 0; top: .72em; width: .45em; height: 1px; background: var(--v-accent); }
+.fmt__meta { margin-top: auto; padding-top: var(--v-4); border-top: 1px solid var(--v-hair); display: flex; justify-content: space-between; gap: var(--v-3); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+.fmt__meta b { font-family: var(--v-font-display); font-weight: 400; color: var(--v-ink); font-size: var(--v-t-lg); }
+.fmt .v-btn { align-self: flex-start; }
+.fmt__hint { font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+@media (pointer: coarse) {
+  .formats .rail { padding-top: var(--v-section); padding-bottom: var(--v-section); }
+  .fmt { width: min(82vw, 22rem); }
+  .fmt--intro { width: min(82vw, 22rem); }
+}
+
+/* ---------- 7. как проходит ---------- */
+.v-page .steps { list-style: none; padding: 0; }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--v-6); margin-top: var(--v-7); counter-reset: s; }
+.steps li { position: relative; padding-top: var(--v-6); border-top: 1px solid var(--v-hair-strong); }
+.steps li::before { counter-increment: s; content: counter(s); position: absolute; top: -.95rem; left: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; display: grid; place-items: center; background: var(--v-canvas); box-shadow: inset 0 0 0 1px var(--v-accent); color: var(--v-accent); font-size: var(--v-t-sm); }
+.steps h3 { font-family: var(--v-font-display); font-weight: 400; font-size: var(--v-t-lg); line-height: 1.2; }
+.steps p { margin-top: var(--v-2); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+.kak__foot { margin-top: var(--v-7); }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--v-7); } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+
+/* ---------- 8. обо мне ---------- */
+.me { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--v-7) clamp(2rem, 6vw, 6rem); align-items: start; }
+.me__photo { aspect-ratio: 3 / 4; border-radius: var(--v-radius); background: linear-gradient(160deg, #2c3830, #1f2823); box-shadow: var(--v-edge), var(--v-e2); display: grid; place-items: center; text-align: center; padding: var(--v-6); color: var(--v-ink-soft); font-size: var(--v-t-sm); position: sticky; top: 6.5rem; overflow: hidden; }
+.me__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.me__text { display: flex; flex-direction: column; gap: var(--v-5); }
+.me__quote { font-family: var(--v-font-display); font-size: var(--v-t-xl); line-height: 1.25; padding-left: var(--v-5); border-left: 1px solid var(--v-accent); text-wrap: balance; }
+.me__facts { display: grid; gap: 0; }
+.me__facts li { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: var(--v-4); padding: var(--v-3) 0; border-top: 1px solid var(--v-hair); font-size: var(--v-t-sm); }
+.me__facts li:last-child { border-bottom: 1px solid var(--v-hair); }
+.me__facts span { color: var(--v-ink-soft); }
+.story summary { cursor: pointer; color: var(--v-accent); font-size: var(--v-t-sm); list-style: none; display: inline-flex; gap: .5em; align-items: center; }
+.story summary::-webkit-details-marker { display: none; }
+.story summary::after { content: "+"; font-size: 1.1em; transition: transform .2s var(--v-ease-out); }
+.story[open] summary::after { transform: rotate(45deg); }
+.story p { margin-top: var(--v-3); color: var(--v-ink-soft); }
+.rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--v-5) var(--v-6); margin-top: var(--v-3); }
+.rules b { display: block; font-family: var(--v-font-display); font-weight: 400; font-size: var(--v-t-lg); }
+.rules span { font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+@media (max-width: 860px) {
+  .me { grid-template-columns: 1fr; }
+  .me__photo { position: relative; top: 0; max-width: 22rem; }
+  .me__facts li { grid-template-columns: 1fr; gap: 0; }
+  .rules { grid-template-columns: 1fr; }
+}
+
+/* ---------- 9. вопросы ---------- */
+.faq { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--v-7) clamp(2rem, 6vw, 6rem); }
+.faq details { border-top: 1px solid var(--v-hair); }
+.faq details:last-child { border-bottom: 1px solid var(--v-hair); }
+.faq summary { cursor: pointer; list-style: none; padding: var(--v-4) 2.2rem var(--v-4) 0; position: relative; font-weight: 500; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: .3rem; top: 50%; transform: translateY(-50%); color: var(--v-accent); font-size: 1.3rem; transition: transform .2s var(--v-ease-out); }
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq details p { padding-bottom: var(--v-5); color: var(--v-ink-soft); max-width: 60ch; }
+@media (max-width: 860px) { .faq { grid-template-columns: 1fr; } }
+
+/* ---------- 10. запись ---------- */
+.book { position: relative; overflow: hidden; padding-top: 0; }
+.book__sky { position: relative; height: clamp(16rem, 42vw, 30rem); overflow: hidden; }
+.book__sky .v-layer img { width: 100%; height: 130%; top: -15%; left: 0; object-fit: cover; object-position: 50% 70%; }
+.book__sky::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgb(28 37 32 / .1) 0%, rgb(28 37 32 / 0) 45%, #1c2520 100%); }
+.book__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--v-7) clamp(2rem, 6vw, 6rem); margin-top: calc(-1 * clamp(5rem, 12vw, 10rem)); position: relative; z-index: 2; }
+.book__side { display: flex; flex-direction: column; gap: var(--v-4); padding-top: var(--v-7); }
+.book__side .alt { margin-top: var(--v-4); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+.book__side .alt a { color: var(--v-ink); }
+.form { background: var(--v-surface); border-radius: var(--v-radius); padding: clamp(1.25rem, 3vw, 2.5rem); box-shadow: var(--v-edge), var(--v-e2); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--v-5) var(--v-4); }
+.form .full { grid-column: 1 / -1; }
+.field { display: flex; flex-direction: column; gap: var(--v-2); min-width: 0; }
+.field > label, .field > .lbl { font-size: var(--v-t-sm); font-weight: 500; }
+.field .opt { color: var(--v-ink-soft); font-weight: 400; }
+.form input[type="text"], .form input[type="tel"], .form input[type="date"], .form input[type="time"], .form select, .form textarea {
+  font: inherit; font-size: 1rem; color: var(--v-ink); background: #1f2823; border: 1px solid var(--v-hair-strong); border-radius: 10px; padding: .8rem .9rem; width: 100%; min-width: 0;
+  transition: border-color .16s var(--v-ease-out), box-shadow .16s var(--v-ease-out); color-scheme: dark;
+}
+.form textarea { min-height: 7rem; resize: vertical; }
+.form select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23afa898' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; padding-right: 2.4rem; }
+.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--v-accent); box-shadow: 0 0 0 3px rgb(208 154 72 / .22); }
+.form ::placeholder { color: #7f7a6e; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--v-2); }
+.chips label { position: relative; }
+.chips input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chips span { display: inline-block; padding: .55rem 1rem; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--v-hair-strong); font-size: var(--v-t-sm); transition: background-color .16s var(--v-ease-out), color .16s var(--v-ease-out), box-shadow .16s; }
+.chips input:checked + span { background: var(--v-accent); color: var(--v-accent-ink); box-shadow: none; }
+.chips input:focus-visible + span { outline: 2px solid var(--v-accent); outline-offset: 2px; }
+.check { display: flex; gap: .6rem; align-items: flex-start; font-size: var(--v-t-sm); color: var(--v-ink-soft); cursor: pointer; }
+.check input { width: 1.1rem; height: 1.1rem; margin-top: .2rem; accent-color: var(--v-accent); flex: none; }
+.check a { color: var(--v-ink); }
+.field__err { font-size: var(--v-t-xs); color: #e79a7c; min-height: 0; }
+.field__err:empty { display: none; }
+.is-invalid input, .is-invalid select, .is-invalid textarea { border-color: #e79a7c; }
+.form__time { display: flex; flex-direction: column; gap: var(--v-2); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form__send { display: flex; flex-wrap: wrap; gap: var(--v-4); align-items: center; }
+.form__send .v-btn[disabled] { opacity: .6; pointer-events: none; }
+.form__status { font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+.form__status.is-error { color: #e79a7c; }
+.done { background: var(--v-surface); border-radius: var(--v-radius); padding: clamp(1.5rem, 4vw, 3rem); box-shadow: var(--v-edge), var(--v-e2); display: flex; flex-direction: column; gap: var(--v-4); align-items: flex-start; }
+.done[hidden] { display: none; }
+.done h3 { font-family: var(--v-font-display); font-weight: 400; font-size: var(--v-t-2xl); line-height: 1.1; }
+@media (max-width: 860px) {
+  .book__grid { grid-template-columns: 1fr; margin-top: calc(-1 * clamp(3rem, 14vw, 6rem)); }
+  .book__side { padding-top: 0; }
+  .form { grid-template-columns: 1fr; }
+}
+
+/* ---------- подвал ---------- */
+.foot { padding: var(--v-7) 0 calc(var(--v-7) + 4rem); border-top: 1px solid var(--v-hair); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+.foot__grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--v-5); }
+.foot a { color: var(--v-ink); }
+.foot__legal { margin-top: var(--v-5); font-size: var(--v-t-xs); max-width: 70ch; }
+
+/* ---------- кнопка на телефоне ---------- */
+.dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; padding: .75rem var(--v-gutter) calc(.75rem + env(safe-area-inset-bottom)); background: linear-gradient(to top, rgb(28 37 32 / .96) 55%, rgb(28 37 32 / 0)); transform: translateY(110%); transition: transform .3s var(--v-ease-out); display: none; }
+.dock .v-btn { width: 100%; justify-content: center; }
+.dock.is-on { transform: none; }
+@media (max-width: 860px) { .dock { display: block; } .foot { padding-bottom: calc(var(--v-7) + 5rem); } }
+@media (min-width: 861px) { .foot { padding-bottom: var(--v-7); } }
+</style>
+</head>
+<body>
+<div class="v-page" id="page">
+  <div data-v-progress></div>
+
+  <header class="bar" id="bar">
+    <a class="bar__brand" href="#top">
+      <span class="bar__name">{{Имя Фамилия}}</span>
+      <span class="bar__role">консультант по бацзы</span>
+    </a>
+    <nav class="bar__nav" aria-label="Разделы">
+      <a href="#karta">Как читаю карту</a>
+      <a href="#muzhchinam">Для мужчин</a>
+      <a href="#biznes">Для бизнеса</a>
+      <a href="#formaty">Форматы</a>
+      <a href="#obo-mne">Обо мне</a>
+      <a href="#voprosy">Вопросы</a>
+    </nav>
+    <a class="v-btn" href="#zapis">Записаться на консультацию</a>
+  </header>
+
+  <main>
+    <!-- 1. Первый экран -->
+    <section class="hero" id="top" data-v-act="pin" data-v-span="2.2" data-v-drift="#1c2520">
+      <div data-v-stage>
+        <div class="v-layer hero__back" data-v-parallax="-0.5">
+          <picture>
+            <source media="(max-width: 860px)" srcset="assets/hero-m.webp">
+            <img src="assets/hero.webp" alt="Гранитные скалы-столбы над тайгой в сумерках" fetchpriority="high">
+          </picture>
+        </div>
+        <div class="hero__col"></div>
+        <div class="v-scrim v-scrim--lead"></div>
+
+        <div class="v-copy v-copy--lead" data-v-cue="0 0.6 0 0.1">
+          <h1 class="v-display" data-v-kinetic="lines">Бацзы-аналитика для предпринимателей: без гадания, с планом</h1>
+          <p class="v-lede">Разбираю карту по дате рождения: где ваш ресурс, деньги и власть, какой период наступает. На понятном языке и с конкретными шагами.</p>
+          <div class="row">
+            <a class="v-btn" href="#zapis">Записаться на консультацию</a>
+            <a class="v-btn v-btn--ghost" href="https://t.me/{{telegram}}" target="_blank" rel="noopener">Написать в Telegram</a>
+          </div>
+          <p class="hero__note">Онлайн из любого города и лично в {{город: в Красноярске}}</p>
+        </div>
+
+        <div class="v-copy v-copy--lead" data-v-cue="0.62 0.97 0.1 0.08">
+          <h2 class="v-display v-display--sm">Бацзы – «четыре столпа судьбы». Китайская система, которая складывалась веками</h2>
+          <div class="pillars" aria-label="Пример карты бацзы из четырёх столпов">
+            <div class="pillar"><div class="pillar__name">Час</div><div class="pillar__hz" aria-hidden="true"><span>壬</span><span>申</span></div><div class="pillar__txt">замыслы, дети, вторая половина жизни</div></div>
+            <div class="pillar"><div class="pillar__name">День</div><div class="pillar__hz" aria-hidden="true"><span>甲</span><span>子</span></div><div class="pillar__txt">вы сами и ваш партнёр</div></div>
+            <div class="pillar"><div class="pillar__name">Месяц</div><div class="pillar__hz" aria-hidden="true"><span>己</span><span>卯</span></div><div class="pillar__txt">карьера, среда, родители</div></div>
+            <div class="pillar"><div class="pillar__name">Год</div><div class="pillar__hz" aria-hidden="true"><span>庚</span><span>午</span></div><div class="pillar__txt">род, корни, ранние годы</div></div>
+          </div>
+          <p class="pillars__cap">Пример карты. Год, месяц, день и час рождения дают четыре столпа, и из них складывается схема: какие силы в вас сильны, каких не хватает и как они влияют друг на друга.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Пять сил: фирменный ход -->
+    <section class="forces" id="karta" data-v-act="pin" data-v-span="3.2" data-v-drift="#1a2226">
+      <div data-v-stage>
+        <div class="forces__in">
+          <div class="forces__head">
+            <h2 class="v-display">Не гадание, а схема, с которой можно работать</h2>
+            <p class="v-lede">В центре карты – вы. Вокруг пять сил, и каждая отвечает за свою часть жизни. Сила не бывает плохой или хорошей: важно, в каком она балансе.</p>
+          </div>
+
+          <figure class="forces__fig" aria-hidden="true">
+            <svg class="fz" viewBox="0 0 440 440" role="img">
+              <circle class="ring" cx="220" cy="220" r="145"/>
+              <!-- порождающий цикл -->
+              <polygon class="cycle" points="220,75 357.9,175.2 305.2,337.3 134.8,337.3 82.1,175.2"/>
+              <!-- сдерживающий цикл -->
+              <polygon class="star" points="220,75 305.2,337.3 82.1,175.2 357.9,175.2 134.8,337.3"/>
+              <!-- спицы к центру, порядок: ресурс, самовыражение, богатство, власть, опора -->
+              <line class="spoke" data-i="0" x1="220" y1="220" x2="82.1" y2="175.2"/>
+              <line class="spoke" data-i="1" x1="220" y1="220" x2="357.9" y2="175.2"/>
+              <line class="spoke" data-i="2" x1="220" y1="220" x2="305.2" y2="337.3"/>
+              <line class="spoke" data-i="3" x1="220" y1="220" x2="134.8" y2="337.3"/>
+              <line class="spoke" data-i="4" x1="220" y1="220" x2="220" y2="75"/>
+
+              <g class="node" data-i="4" style="--c: var(--el-wood)"><circle cx="220" cy="75" r="16"/><text x="220" y="40">Опора и соперники</text></g>
+              <g class="node" data-i="1" style="--c: var(--el-fire)"><circle cx="357.9" cy="175.2" r="16"/><text x="357.9" y="218">Самовыражение</text></g>
+              <g class="node" data-i="2" style="--c: var(--el-earth)"><circle cx="305.2" cy="337.3" r="16"/><text x="305.2" y="380">Богатство</text></g>
+              <g class="node" data-i="3" style="--c: var(--el-metal)"><circle cx="134.8" cy="337.3" r="16"/><text x="134.8" y="380">Власть</text></g>
+              <g class="node" data-i="0" style="--c: var(--el-water)"><circle cx="82.1" cy="175.2" r="16"/><text x="82.1" y="218">Ресурс</text></g>
+
+              <g class="me"><circle cx="220" cy="220" r="38"/><text x="220" y="221">Я</text></g>
+            </svg>
+          </figure>
+
+          <div class="forces__cues">
+            <div class="fcue" data-v-cue="0 0.22 0.06 0.05" style="--c: var(--el-water)">
+              <h3><i></i>Ресурс</h3>
+              <p>Что вас питает и восстанавливает: знания, поддержка, люди, на которых можно опереться.</p>
+              <p class="fcue__q">Где брать силы, когда их нет, и почему они уходят</p>
+            </div>
+            <div class="fcue" data-v-cue="0.2 0.42 0.05 0.05" style="--c: var(--el-fire)">
+              <h3><i></i>Самовыражение</h3>
+              <p>Ваши врождённые способности и то, как вы проявляетесь: идеи, речь, продукт, творчество.</p>
+              <p class="fcue__q">В чём вы сильны от природы, а где тратите себя впустую</p>
+            </div>
+            <div class="fcue" data-v-cue="0.4 0.62 0.05 0.05" style="--c: var(--el-earth)">
+              <h3><i></i>Богатство</h3>
+              <p>Ёмкость богатства и его источник: откуда приходят деньги и сколько вы способны удержать.</p>
+              <p class="fcue__q">Подходит ли вам своё дело и какого масштаба</p>
+            </div>
+            <div class="fcue" data-v-cue="0.6 0.82 0.05 0.05" style="--c: var(--el-metal)">
+              <h3><i></i>Власть</h3>
+              <p>Статус, дисциплина, давление. Где вы управляете, а где вас пытаются подмять.</p>
+              <p class="fcue__q">Как держать удар и не ломать себя под чужие правила</p>
+            </div>
+            <div class="fcue" data-v-cue="0.8 1 0.05 0" style="--c: var(--el-wood)">
+              <h3><i></i>Опора и соперники</h3>
+              <p>Равные вам: друзья, партнёры, конкуренты. Кто рядом усиливает, а кто забирает.</p>
+              <p class="fcue__q">Где поджать, где добавить, чтобы силы работали вместе</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. С чем приходят -->
+    <section class="v-section v-section--tight" id="zaprosy" data-v-act="flow" data-v-drift="#1c2520">
+      <div class="v-wrap asks">
+        <div class="asks__head" data-v-in>
+          <h2 class="v-display">С чем приходят на консультацию</h2>
+          <p class="muted">Обычно не за предсказанием, а за ясностью: что со мной происходит и что с этим делать.</p>
+        </div>
+        <ul class="asks__list" data-v-in data-v-stagger="60">
+          <li>«Я всё время играю роли и уже не понимаю, кто я»<span>Разбираем вашу природу: где вы настоящий, а где держите чужую маску</span></li>
+          <li>«Бизнес упёрся в потолок, и я не вижу, куда дальше»<span>Смотрим ёмкость богатства, масштаб и направление, которое подходит именно вам</span></li>
+          <li>«Не понимаю партнёра. Не знаю, можно ли на него опереться»<span>Разбираем карту партнёра: сильные стороны, дефициты, зоны риска</span></li>
+          <li>«Всё рушится, и непонятно почему»<span>Проверяем, не сменился ли десятилетний период: по-старому уже не работает, и это можно объяснить</span></li>
+          <li>«Мы с супругом говорим на разных языках»<span>Смотрим, кто вы друг для друга, что даёте и что забираете</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. Для мужчин -->
+    <section class="men" id="muzhchinam" data-v-act="pin" data-v-span="2" data-v-drift="#221f1b">
+      <div data-v-stage>
+        <figure class="v-fill" data-v-reveal="left" data-v-reveal-at="0 0.32"><img src="assets/talk.webp" alt="Два одинаковых кресла друг напротив друга в тихой комнате" loading="lazy"></figure>
+        <div class="v-scrim v-scrim--lead"></div>
+        <div class="v-copy v-copy--lead" data-v-cue="0.12 0.92 0.14 0.1">
+          <p class="kicker">Отдельная работа для мужчин</p>
+          <h2 class="v-display">Разговор, где можно снять доспехи</h2>
+          <p>Для тех, у кого конкуренты, обязательства и толпа вокруг. Здесь не нужно держать лицо: говорим на равных, без оценок и советов «как должен мужчина». Можно быть в тупике, сомневаться, злиться, и всё останется между нами.</p>
+          <ul class="men__list">
+            <li>Реализация и власть: где ваша сила и куда её направить</li>
+            <li>Окружение: партнёры, конкуренты, команда</li>
+            <li>Личное: отношения, дети, усталость от роли</li>
+          </ul>
+          <a class="v-btn" href="#zapis" data-format="Мужская консультация">Записаться на консультацию</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Для бизнеса -->
+    <section class="v-section" id="biznes" data-v-act="flow" data-v-drift="#1e2321">
+      <div class="v-wrap biz">
+        <div class="biz__head" data-v-in>
+          <p class="kicker">Для предпринимателей</p>
+          <h2 class="v-display">Бацзы как стратегический разбор бизнеса</h2>
+          <p class="muted">Я много лет веду свой бизнес и проверяла этот подход на себе, своих партнёрах и конкурентах. Результат разбора – решения, а не общие слова.</p>
+        </div>
+        <div data-v-in data-v-stagger="50">
+          <ul class="biz__q">
+            <li><b>Своё дело</b><span>Подходит ли вам собственный бизнес, какой и какого масштаба</span></li>
+            <li><b>Деньги</b><span>Ёмкость богатства: откуда приходят деньги и где утекают</span></li>
+            <li><b>Риски</b><span>Откуда может прийти банкротство и в каком периоде его ждать</span></li>
+            <li><b>Время</b><span>Когда открывать дело, заключать сделки, расширяться</span></li>
+            <li><b>Направление</b><span>Куда двигаться в ближайшие годы, с учётом смены десятилетнего периода</span></li>
+          </ul>
+          <div class="biz__rival">
+            <p><b>Разбор партнёров, команды и конкурентов</b></p>
+            <p class="muted">По дате рождения видно сильные стороны человека, его дефициты и зоны риска: где человек может не выдержать давления и откуда ждать проблем в совместном деле.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Форматы -->
+    <section class="formats" id="formaty" data-v-act="pan" data-v-span="3.6" data-v-drift="#1c2520">
+      <div data-v-stage>
+        <div class="rail" data-v-pan="0.04">
+          <div class="fmt fmt--intro">
+            <h2 class="v-display">Форматы консультаций</h2>
+            <p class="muted">Выберите тему, с которой хотите начать. Если сомневаетесь, отметьте в заявке «помогите выбрать», и мы решим вместе.</p>
+          </div>
+
+          <article class="fmt">
+            <h3>Личный разбор карты</h3>
+            <ul>
+              <li>ваша природа и врождённые способности</li>
+              <li>ресурс, самовыражение, деньги, власть</li>
+              <li>где поджать, где добавить</li>
+            </ul>
+            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
+            <a class="v-btn" href="#zapis" data-format="Личный разбор карты">Записаться на консультацию</a>
+          </article>
+
+          <article class="fmt">
+            <h3>Бизнес-стратегия</h3>
+            <ul>
+              <li>своё дело, масштаб, направление</li>
+              <li>риски и периоды для сделок</li>
+              <li>разбор партнёров, команды, конкурентов</li>
+            </ul>
+            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
+            <a class="v-btn" href="#zapis" data-format="Бизнес-стратегия">Записаться на консультацию</a>
+          </article>
+
+          <article class="fmt">
+            <h3>Пара и семья</h3>
+            <ul>
+              <li>кто вы друг для друга</li>
+              <li>что даёте и что забираете</li>
+              <li>отношения с детьми</li>
+            </ul>
+            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
+            <a class="v-btn" href="#zapis" data-format="Пара и семья">Записаться на консультацию</a>
+          </article>
+
+          <article class="fmt">
+            <h3>Десятилетний период</h3>
+            <ul>
+              <li>что меняет приходящий столп удачи</li>
+              <li>почему «по-старому» перестало работать</li>
+              <li>благоприятное время для важных решений</li>
+            </ul>
+            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
+            <a class="v-btn" href="#zapis" data-format="Десятилетний период">Записаться на консультацию</a>
+          </article>
+
+          <article class="fmt fmt--men">
+            <h3>Мужская консультация</h3>
+            <ul>
+              <li>разговор на равных, без оценок</li>
+              <li>реализация, власть, окружение</li>
+              <li>полная конфиденциальность</li>
+            </ul>
+            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
+            <a class="v-btn" href="#zapis" data-format="Мужская консультация">Записаться на консультацию</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Как проходит -->
+    <section class="v-section" id="kak" data-v-act="flow" data-v-drift="#1e2321">
+      <div class="v-wrap">
+        <div class="v-stack" data-v-in>
+          <h2 class="v-display">Как проходит консультация</h2>
+          <p class="muted v-body">От заявки до плана на руках. Никакой подготовки, кроме данных о рождении и вашего вопроса.</p>
+        </div>
+        <ol class="steps" data-v-in data-v-stagger="80">
+          <li><h3>Заявка</h3><p>Оставляете заявку на сайте или пишете в Telegram. Я отвечаю в течение {{срок ответа}}.</p></li>
+          <li><h3>Данные и запрос</h3><p>Уточняю дату, время и город рождения и то, что сейчас важно разобрать.</p></li>
+          <li><h3>Консультация</h3><p>{{Онлайн по видеосвязи или лично}}, около {{длительность}}. Объясняю карту простыми словами, отвечаю на вопросы.</p></li>
+          <li><h3>План на руках</h3><p>После встречи у вас остаются выводы и конкретные шаги: {{что клиент получает: запись, PDF, план}}.</p></li>
+        </ol>
+        <div class="row kak__foot" data-v-in>
+          <a class="v-btn" href="#zapis">Записаться на консультацию</a>
+          <span class="muted">Время рождения не знаете? Разбор всё равно возможен.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Обо мне -->
+    <section class="v-section" id="obo-mne" data-v-act="flow" data-v-drift="#1c2520">
+      <div class="v-wrap me">
+        <figure class="me__photo" data-v-reveal="up" data-v-reveal-at="0.05 0.4">
+          <!-- Фото заказчицы: положить в assets/me.webp и раскомментировать -->
+          <!-- <img src="assets/me.webp" alt="{{Имя Фамилия}}" loading="lazy"> -->
+          <span>Здесь будет ваш портрет<br>3:4, естественный свет</span>
+        </figure>
+        <div class="me__text" data-v-in data-v-stagger="70">
+          <p class="kicker">Обо мне</p>
+          <h2 class="v-display">{{Имя Фамилия}}. Практик, предприниматель, консультант по бацзы</h2>
+          <p>Всё, о чём я говорю на консультациях, я прожила сама. Бацзы пришло в мою жизнь через цигун, когда я восстанавливалась после тяжёлой болезни. Понимание собственной природы изменило мою жизнь, и теперь я помогаю другим найти свою опору.</p>
+          <p class="me__quote">Истинная сила – не борьба с миром и не чужие маски, а знание своей природы и опора на себя</p>
+          <ul class="me__facts">
+            <li><span>Обучение</span>Школа цигун и бацзы в Санкт-Петербурге, продолжение обучения в Красноярске ({{названия школ, мастера, сертификаты}})</li>
+            <li><span>Бизнес</span>Много лет веду собственный бизнес ({{сфера}})</li>
+            <li><span>Онкомейт</span>Действующий онкомейт, прошла профессиональное обучение</li>
+          </ul>
+          <ul class="rules">
+            <li><b>Не гадаю</b><span>Анализирую факты и природу человека и вывожу результат</span></li>
+            <li><b>Конкретика</b><span>Перевожу бацзы на понятный язык: делаем так-то и так-то</span></li>
+            <li><b>Ноль осуждения</b><span>Можно плакать, смеяться, бояться, быть в тупике</span></li>
+            <li><b>Между нами</b><span>Ваши данные и история никуда не передаются</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Вопросы -->
+    <section class="v-section v-section--tight" id="voprosy" data-v-act="flow" data-v-drift="#1e2321">
+      <div class="v-wrap faq">
+        <div data-v-in><h2 class="v-display">Частые вопросы</h2></div>
+        <div data-v-in data-v-stagger="50">
+          <details><summary>Это гадание или предсказание?</summary><p>Нет. Карта не предсказывает события «по звёздам». Она показывает устройство: какие силы в вас сильны, каких не хватает и как это меняется по периодам. Дальше мы вместе решаем, что с этим делать.</p></details>
+          <details><summary>Что нужно для разбора?</summary><p>Дата, время и город рождения. Если разбираем пару или партнёра по бизнесу, понадобятся те же данные второго человека.</p></details>
+          <details><summary>Я не знаю точного времени рождения</summary><p>Разбор возможен по трём столпам: году, месяцу и дню. Часть выводов будет менее точной, и я скажу, какая именно.</p></details>
+          <details><summary>Онлайн или вживую?</summary><p>Онлайн по видеосвязи из любого города. Лично – в {{город: в Красноярске}}.</p></details>
+          <details><summary>Сколько длится консультация и что я получу?</summary><p>Консультация длится {{длительность}}. После неё у вас остаются {{что клиент получает: запись, PDF-разбор, план действий}}.</p></details>
+          <details><summary>Это конфиденциально?</summary><p>Да. Ваши данные и то, что вы рассказываете, не передаются третьим лицам и не публикуются. Истории клиентов я показываю только анонимно и с их согласия.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Запись -->
+    <section class="v-section book" id="zapis" data-v-act="flow" data-v-drift="#1c2520">
+      <div class="book__sky" aria-hidden="true">
+        <div class="v-layer" data-v-parallax="-0.8"><img src="assets/river.webp" alt="" loading="lazy"></div>
+      </div>
+      <div class="v-wrap book__grid">
+        <div class="book__side" data-v-in>
+          <h2 class="v-display">Запишитесь на консультацию</h2>
+          <p class="muted">Оставьте заявку, и я свяжусь с вами, чтобы уточнить данные и время. Заполнить дату рождения можно сейчас или позже.</p>
+          <p class="alt">Удобнее в мессенджере? Напишите в <a href="https://t.me/{{telegram}}" target="_blank" rel="noopener">Telegram</a> или <a href="https://wa.me/{{whatsapp}}" target="_blank" rel="noopener">WhatsApp</a>.</p>
+        </div>
+
+        <div data-v-in>
+          <form class="form" id="form" novalidate>
+            <div class="field" data-f="name">
+              <label for="f-name">Как к вам обращаться</label>
+              <input id="f-name" name="Имя" type="text" autocomplete="name" required>
+              <span class="field__err"></span>
+            </div>
+            <div class="field" data-f="contact">
+              <label for="f-contact">Телефон или Telegram</label>
+              <input id="f-contact" name="Контакт" type="text" autocomplete="tel" placeholder="+7 900 000-00-00 или @username" required>
+              <span class="field__err"></span>
+            </div>
+
+            <div class="field full" data-f="way">
+              <span class="lbl" id="l-way">Как удобнее связаться</span>
+              <div class="chips" role="radiogroup" aria-labelledby="l-way">
+                <label><input type="radio" name="Способ связи" value="Звонок" checked><span>Звонок</span></label>
+                <label><input type="radio" name="Способ связи" value="WhatsApp"><span>WhatsApp</span></label>
+                <label><input type="radio" name="Способ связи" value="Telegram"><span>Telegram</span></label>
+              </div>
+            </div>
+
+            <div class="field full" data-f="format">
+              <label for="f-format">Формат консультации</label>
+              <select id="f-format" name="Формат" required>
+                <option value="">Выберите формат</option>
+                <option>Личный разбор карты</option>
+                <option>Бизнес-стратегия</option>
+                <option>Пара и семья</option>
+                <option>Десятилетний период</option>
+                <option>Мужская консультация</option>
+                <option>Пока не знаю, помогите выбрать</option>
+              </select>
+              <span class="field__err"></span>
+            </div>
+
+            <div class="field">
+              <label for="f-date">Дата рождения <span class="opt">– можно позже</span></label>
+              <input id="f-date" name="Дата рождения" type="date" min="1920-01-01">
+            </div>
+            <div class="field form__time">
+              <label for="f-time">Время рождения <span class="opt">– если знаете</span></label>
+              <input id="f-time" name="Время рождения" type="time">
+              <label class="check"><input type="checkbox" id="f-notime" name="Время неизвестно" value="да"> Не знаю точного времени</label>
+            </div>
+            <div class="field full">
+              <label for="f-city">Город рождения <span class="opt">– можно позже</span></label>
+              <input id="f-city" name="Город рождения" type="text">
+            </div>
+            <div class="field full">
+              <label for="f-ask">Ваш запрос <span class="opt">– коротко, что сейчас важно разобрать</span></label>
+              <textarea id="f-ask" name="Запрос"></textarea>
+            </div>
+
+            <div class="field full" data-f="agree">
+              <label class="check"><input type="checkbox" id="f-agree" required> <span>Согласен(на) на обработку персональных данных по <a href="policy.html" target="_blank">политике конфиденциальности</a></span></label>
+              <span class="field__err"></span>
+            </div>
+
+            <div class="hp" aria-hidden="true"><label>Не заполняйте это поле <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+
+            <div class="form__send full">
+              <button class="v-btn" type="submit">Записаться на консультацию</button>
+              <span class="form__status" id="form-status" role="status" aria-live="polite"></span>
+            </div>
+          </form>
+
+          <div class="done" id="done" hidden tabindex="-1">
+            <h3>Заявка отправлена</h3>
+            <p class="muted">Спасибо! Я свяжусь с вами в течение {{срок ответа}}. Всё, что вы написали, останется между нами.</p>
+            <a class="v-btn v-btn--ghost" href="https://t.me/{{telegram}}" target="_blank" rel="noopener">Написать в Telegram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="v-wrap">
+      <div class="foot__grid">
+        <div>{{Имя Фамилия}}, консультант по бацзы<br>{{ИП или самозанятая, ИНН}}</div>
+        <div><a href="https://t.me/{{telegram}}" target="_blank" rel="noopener">Telegram</a> &nbsp; <a href="https://wa.me/{{whatsapp}}" target="_blank" rel="noopener">WhatsApp</a> &nbsp; <a href="policy.html">Политика конфиденциальности</a></div>
+      </div>
+      <p class="foot__legal">Консультации по бацзы не являются медицинской, психологической или юридической помощью и не заменяют обращение к специалистам.</p>
+    </div>
+  </footer>
+
+  <div class="dock" id="dock"><a class="v-btn" href="#zapis">Записаться на консультацию</a></div>
+</div>
+
+<script src="vibe.js"></script>
+<script>
+(function () {
+  var page = document.getElementById("page");
+  var mobile = window.matchMedia("(max-width: 860px)").matches;
+  if (mobile) document.getElementById("top").setAttribute("data-v-span", "1.7");
+  Vibe.mount(page);
+
+  /* шапка */
+  var bar = document.getElementById("bar");
+  var onBar = function () { bar.classList.toggle("is-scrolled", window.scrollY > 40); };
+  window.addEventListener("scroll", onBar, { passive: true }); onBar();
+
+  /* пять сил: какая сила горит, по --v-p акта */
+  var act = document.getElementById("karta");
+  var nodes = act.querySelectorAll(".node"), spokes = act.querySelectorAll(".spoke");
+  var cur = -1, live = false;
+  var setS = function (s) {
+    if (s === cur) return; cur = s;
+    nodes.forEach(function (n) { n.classList.toggle("is-on", +n.getAttribute("data-i") === s); });
+    spokes.forEach(function (l) { l.classList.toggle("is-on", +l.getAttribute("data-i") === s); });
+  };
+  var tick = function () {
+    if (!live) return;
+    var p = parseFloat(getComputedStyle(act).getPropertyValue("--v-p")) || 0;
+    setS(p < 0.21 ? 0 : p < 0.41 ? 1 : p < 0.61 ? 2 : p < 0.81 ? 3 : 4);
+    requestAnimationFrame(tick);
+  };
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { live = e.isIntersecting; if (live) requestAnimationFrame(tick); });
+  }).observe(act);
+  setS(0);
+
+  /* кнопки с форматом подставляют его в форму */
+  var sel = document.getElementById("f-format");
+  document.querySelectorAll("[data-format]").forEach(function (a) {
+    a.addEventListener("click", function () { sel.value = a.getAttribute("data-format"); sel.closest(".field").classList.remove("is-invalid"); sel.closest(".field").querySelector(".field__err").textContent = ""; });
+  });
+
+  /* время рождения неизвестно */
+  var notime = document.getElementById("f-notime"), time = document.getElementById("f-time");
+  notime.addEventListener("change", function () { time.disabled = notime.checked; if (notime.checked) time.value = ""; });
+
+  /* кнопка на телефоне: видна после первого экрана, прячется у формы */
+  var dock = document.getElementById("dock"), book = document.getElementById("zapis"), heroEl = document.getElementById("top");
+  var nearBook = false, pastHero = false, inMen = false;
+  var upd = function () { dock.classList.toggle("is-on", pastHero && !nearBook && !inMen); };
+  new IntersectionObserver(function (es) { es.forEach(function (e) { inMen = e.isIntersecting; upd(); }); }, { rootMargin: "-40% 0px -40% 0px" }).observe(document.getElementById("muzhchinam"));
+  new IntersectionObserver(function (es) { es.forEach(function (e) { nearBook = e.isIntersecting; upd(); }); }, { rootMargin: "0px 0px 10% 0px" }).observe(book);
+  window.addEventListener("scroll", function () { pastHero = window.scrollY > heroEl.offsetHeight * 0.5; upd(); }, { passive: true });
+
+  /* форма: заявки на почту через FormSubmit */
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/{{почта для заявок}}";
+  var form = document.getElementById("form"), status = document.getElementById("form-status"), done = document.getElementById("done");
+  var err = function (key, msg) {
+    var f = form.querySelector('[data-f="' + key + '"]');
+    f.classList.toggle("is-invalid", !!msg);
+    f.querySelector(".field__err").textContent = msg || "";
+    return !msg;
+  };
+  var check = function () {
+    var ok = true, first = null;
+    var name = form.querySelector("#f-name").value.trim();
+    var contact = form.querySelector("#f-contact").value.trim();
+    var digits = contact.replace(/\D/g, "");
+    var rules = [
+      ["name", name.length < 2 ? "Напишите, как к вам обращаться" : "", "#f-name"],
+      ["contact", !contact ? "Оставьте телефон или ник в Telegram" : (/^@?[A-Za-z0-9_]{4,}$/.test(contact) && contact.indexOf("@") === 0) || digits.length >= 10 ? "" : "Проверьте номер (не меньше 10 цифр) или ник в Telegram, начиная с @", "#f-contact"],
+      ["format", sel.value ? "" : "Выберите формат или «Пока не знаю»", "#f-format"],
+      ["agree", form.querySelector("#f-agree").checked ? "" : "Без согласия на обработку данных заявку отправить нельзя", "#f-agree"]
+    ];
+    rules.forEach(function (r) { if (!err(r[0], r[1])) { ok = false; if (!first) first = form.querySelector(r[2]); } });
+    if (first) first.focus();
+    return ok;
+  };
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    status.classList.remove("is-error"); status.textContent = "";
+    if (!check()) return;
+    if (form.querySelector('[name="_honey"]').value) return;
+    if (FORM_ENDPOINT.indexOf("{{") !== -1) {
+      status.textContent = "Демо-версия: адрес для заявок ещё не подключён, заявка не отправлена.";
+      return;
+    }
+    var data = {};
+    new FormData(form).forEach(function (v, k) { if (k !== "_honey" && String(v).trim()) data[k] = v; });
+    data._subject = "Заявка на консультацию по бацзы";
+    data._template = "table";
+    data._captcha = "false";
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true; status.textContent = "Отправляю…";
+    fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) !== "true") throw new Error(j.message || "error"); }); })
+      .then(function () { form.hidden = true; done.hidden = false; done.focus(); Vibe.remeasure(); })
+      .catch(function () {
+        btn.disabled = false;
+        status.classList.add("is-error");
+        status.textContent = "Заявка не отправилась. Проверьте интернет и нажмите ещё раз или напишите в Telegram.";
+      });
+  });
+  form.addEventListener("input", function (e) {
+    var f = e.target.closest("[data-f]");
+    if (f && f.classList.contains("is-invalid")) { f.classList.remove("is-invalid"); f.querySelector(".field__err").textContent = ""; }
+  });
+})();
+</script>
+</body>
+</html>
