@@ -187,14 +187,18 @@ html, body { background: #1c2520; }
 .fmt ul { display: grid; gap: var(--v-2); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
 .fmt li { padding-left: 1.1em; position: relative; }
 .fmt li::before { content: ""; position: absolute; left: 0; top: .72em; width: .45em; height: 1px; background: var(--v-accent); }
+.fmt .v-btn { margin-top: auto; }
+.fmt--mini .v-btn { margin-top: 0; }
 .fmt__meta { margin-top: auto; padding-top: var(--v-4); border-top: 1px solid var(--v-hair); display: flex; justify-content: space-between; gap: var(--v-3); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
 .fmt__meta b { font-family: var(--v-font-display); font-weight: 400; color: var(--v-ink); font-size: var(--v-t-lg); }
 .fmt .v-btn { align-self: flex-start; }
 .fmt__hint { font-size: var(--v-t-sm); color: var(--v-ink-soft); }
 @media (pointer: coarse) {
   .formats .rail { padding-top: var(--v-section); padding-bottom: var(--v-section); }
+  .formats [data-v-stage] { scroll-padding-inline: var(--v-gutter); }
   .fmt { width: min(82vw, 22rem); }
-  .fmt--intro { width: min(82vw, 22rem); }
+  .fmt--intro { width: min(68vw, 18rem); }
+  .formats .rail { gap: var(--v-4); }
 }
 
 /* ---------- 7. как проходит ---------- */
@@ -489,13 +493,24 @@ html, body { background: #1c2520; }
     </section>
 
     <!-- 6. Форматы -->
-    <section class="formats" id="formaty" data-v-act="pan" data-v-span="3.6" data-v-drift="#1c2520">
+    <section class="formats" id="formaty" data-v-act="pan" data-v-span="4" data-v-drift="#1c2520">
       <div data-v-stage>
         <div class="rail" data-v-pan="0.04">
           <div class="fmt fmt--intro">
             <h2 class="v-display">Форматы консультаций</h2>
             <p class="muted">Выберите тему, с которой хотите начать. Если сомневаетесь, отметьте в заявке «помогите выбрать», и мы решим вместе.</p>
           </div>
+
+          <article class="fmt fmt--mini">
+            <h3>Мини-разбор</h3>
+            <ul>
+              <li>один вопрос, который важен сейчас</li>
+              <li>ответ по вашей карте, без воды</li>
+              <li>понятно, нужен ли полный разбор</li>
+            </ul>
+            <div class="fmt__meta"><span>30–60 минут</span><b>4&nbsp;000&nbsp;₽</b></div>
+            <a class="v-btn" href="#zapis" data-format="Мини-разбор">Записаться на консультацию</a>
+          </article>
 
           <article class="fmt">
             <h3>Личный разбор карты</h3>
@@ -504,7 +519,6 @@ html, body { background: #1c2520; }
               <li>ресурс, самовыражение, деньги, власть</li>
               <li>где поджать, где добавить</li>
             </ul>
-            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
             <a class="v-btn" href="#zapis" data-format="Личный разбор карты">Записаться на консультацию</a>
           </article>
 
@@ -515,7 +529,6 @@ html, body { background: #1c2520; }
               <li>риски и периоды для сделок</li>
               <li>разбор партнёров, команды, конкурентов</li>
             </ul>
-            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
             <a class="v-btn" href="#zapis" data-format="Бизнес-стратегия">Записаться на консультацию</a>
           </article>
 
@@ -526,7 +539,6 @@ html, body { background: #1c2520; }
               <li>что даёте и что забираете</li>
               <li>отношения с детьми</li>
             </ul>
-            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
             <a class="v-btn" href="#zapis" data-format="Пара и семья">Записаться на консультацию</a>
           </article>
 
@@ -537,7 +549,6 @@ html, body { background: #1c2520; }
               <li>почему «по-старому» перестало работать</li>
               <li>благоприятное время для важных решений</li>
             </ul>
-            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
             <a class="v-btn" href="#zapis" data-format="Десятилетний период">Записаться на консультацию</a>
           </article>
 
@@ -548,7 +559,6 @@ html, body { background: #1c2520; }
               <li>реализация, власть, окружение</li>
               <li>полная конфиденциальность</li>
             </ul>
-            <div class="fmt__meta"><span>{{длительность}}</span><b>{{цена}}&nbsp;₽</b></div>
             <a class="v-btn" href="#zapis" data-format="Мужская консультация">Записаться на консультацию</a>
           </article>
         </div>
@@ -563,9 +573,9 @@ html, body { background: #1c2520; }
           <p class="muted v-body">От заявки до плана на руках. Никакой подготовки, кроме данных о рождении и вашего вопроса.</p>
         </div>
         <ol class="steps" data-v-in data-v-stagger="80">
-          <li><h3>Заявка</h3><p>Оставляете заявку на сайте или пишете в Telegram. Я отвечаю в течение {{срок ответа}}.</p></li>
+          <li><h3>Заявка</h3><p>Оставляете заявку на сайте или пишете в Telegram. На заявку на мини-разбор отвечаю в течение суток, на консультацию – до трёх суток.</p></li>
           <li><h3>Данные и запрос</h3><p>Уточняю дату, время и город рождения и то, что сейчас важно разобрать.</p></li>
-          <li><h3>Консультация</h3><p>Онлайн по видеосвязи или лично в Красноярске, около {{длительность}}. Объясняю карту простыми словами, отвечаю на вопросы.</p></li>
+          <li><h3>Консультация</h3><p>Онлайн по видеосвязи или лично в Красноярске. Объясняю карту простыми словами, отвечаю на вопросы.</p></li>
           <li><h3>План на руках</h3><p>После встречи у вас остаются выводы и конкретные шаги: {{что клиент получает: запись, PDF, план}}.</p></li>
         </ol>
         <div class="row kak__foot" data-v-in>
@@ -615,7 +625,7 @@ html, body { background: #1c2520; }
           <details><summary>Что нужно для разбора?</summary><p>Дата, время и город рождения. Если разбираем пару или партнёра по бизнесу, понадобятся те же данные второго человека.</p></details>
           <details><summary>Я не знаю точного времени рождения</summary><p>Разбор возможен по трём столпам: году, месяцу и дню. Часть выводов будет менее точной, и я скажу, какая именно.</p></details>
           <details><summary>Онлайн или вживую?</summary><p>Онлайн по видеосвязи из любого города. Лично – в Красноярске.</p></details>
-          <details><summary>Сколько длится консультация и что я получу?</summary><p>Консультация длится {{длительность}}. После неё у вас остаются {{что клиент получает: запись, PDF-разбор, план действий}}.</p></details>
+          <details><summary>Сколько длится консультация и что я получу?</summary><p>Мини-разбор длится от 30 минут до часа. Длительность полной консультации зависит от запроса, её обсудим при записи. После консультации у вас остаются {{что клиент получает: запись, PDF-разбор, план действий}}.</p></details>
           <details><summary>Это конфиденциально?</summary><p>Да. Ваши данные и то, что вы рассказываете, не передаются третьим лицам и не публикуются. Истории клиентов я показываю только анонимно и с их согласия.</p></details>
         </div>
       </div>
@@ -659,6 +669,7 @@ html, body { background: #1c2520; }
               <label for="f-format">Формат консультации</label>
               <select id="f-format" name="Формат" required>
                 <option value="">Выберите формат</option>
+                <option>Мини-разбор</option>
                 <option>Личный разбор карты</option>
                 <option>Бизнес-стратегия</option>
                 <option>Пара и семья</option>
@@ -702,7 +713,7 @@ html, body { background: #1c2520; }
 
           <div class="done" id="done" hidden tabindex="-1">
             <h3>Заявка отправлена</h3>
-            <p class="muted">Спасибо! Я свяжусь с вами в течение {{срок ответа}}. Всё, что вы написали, останется между нами.</p>
+            <p class="muted">Спасибо! По мини-разбору я свяжусь с вами в течение суток, по консультации – в течение трёх суток. Всё, что вы написали, останется между нами.</p>
             <a class="v-btn v-btn--ghost" href="https://t.me/{{telegram}}" target="_blank" rel="noopener">Написать в Telegram</a>
           </div>
         </div>
@@ -713,7 +724,7 @@ html, body { background: #1c2520; }
   <footer class="foot">
     <div class="v-wrap">
       <div class="foot__grid">
-        <div>Елена Фролова, консультант по бацзы<br>{{ИП или самозанятая, ИНН}}</div>
+        <div>Елена Фролова, консультант по бацзы<br>ИП Фролова Елена, ИНН 246519598480</div>
         <div><a href="https://t.me/{{telegram}}" target="_blank" rel="noopener">Telegram</a> &nbsp; <a href="https://wa.me/{{whatsapp}}" target="_blank" rel="noopener">WhatsApp</a> &nbsp; <a href="policy.html">Политика конфиденциальности</a></div>
       </div>
       <p class="foot__legal">Консультации по бацзы не являются медицинской, психологической или юридической помощью и не заменяют обращение к специалистам.</p>
