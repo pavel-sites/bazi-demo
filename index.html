@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Бацзы-аналитика – консультации {{Имя Фамилия}}</title>
+<title>Бацзы-аналитика – консультации Елена Фролова</title>
 <meta name="description" content="Разбор карты бацзы по дате рождения: ресурс, деньги, власть, периоды. Без гадания и эзотерики – понятный язык и конкретный план. Онлайн и лично.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Бацзы-аналитика для предпринимателей: без гадания, с планом">
 <meta property="og:description" content="Разбор карты по дате рождения на понятном языке. Итог консультации – конкретный план.">
-<meta property="og:image" content="{{ссылка-сайта}}/assets/og.jpg">
-<meta property="og:url" content="{{ссылка-сайта}}">
+<meta property="og:image" content="https://pavel-sites.github.io/bazi-demo/assets/og.jpg">
+<meta property="og:url" content="https://pavel-sites.github.io/bazi-demo">
 <meta name="theme-color" content="#1c2520">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c2520'/%3E%3Cg fill='%23d09a48'%3E%3Crect x='6' y='8' width='3.4' height='16' rx='1'/%3E%3Crect x='11.6' y='8' width='3.4' height='16' rx='1'/%3E%3Crect x='17.2' y='8' width='3.4' height='16' rx='1'/%3E%3Crect x='22.8' y='8' width='3.4' height='16' rx='1'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,7 +159,7 @@ html, body { background: #1c2520; }
 .men__list li::before { content: ""; position: absolute; left: 0; top: .72em; width: .5em; height: 1px; background: var(--v-accent); }
 .men .v-btn { margin-top: var(--v-5); }
 @media (max-width: 860px) {
-  .men .v-copy--lead { top: auto; bottom: 5.75rem; display: block; }
+  .men .v-copy--lead { top: auto; bottom: clamp(1.5rem, 5vh, 3rem); display: block; }
   .men .v-copy > * + * { margin-top: var(--v-3); }
   .men .v-btn { margin-top: var(--v-4); }
   .men .v-scrim--lead { background: linear-gradient(to top, rgb(20 18 15 / .95) 0%, rgb(20 18 15 / .78) 52%, transparent 82%); }
@@ -229,6 +229,7 @@ html, body { background: #1c2520; }
 @media (max-width: 860px) {
   .me { grid-template-columns: 1fr; }
   .me__photo { position: relative; top: 0; max-width: 22rem; }
+  .me__quote { font-size: var(--v-t-lg); }
   .me__facts li { grid-template-columns: 1fr; gap: 0; }
   .rules { grid-template-columns: 1fr; }
 }
@@ -294,26 +295,23 @@ html, body { background: #1c2520; }
 }
 
 /* ---------- подвал ---------- */
-.foot { padding: var(--v-7) 0 calc(var(--v-7) + 4rem); border-top: 1px solid var(--v-hair); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
+.foot { padding: var(--v-7) 0; border-top: 1px solid var(--v-hair); font-size: var(--v-t-sm); color: var(--v-ink-soft); }
 .foot__grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--v-5); }
 .foot a { color: var(--v-ink); }
 .foot__legal { margin-top: var(--v-5); font-size: var(--v-t-xs); max-width: 70ch; }
 
-/* ---------- кнопка на телефоне ---------- */
-.dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; padding: .75rem var(--v-gutter) calc(.75rem + env(safe-area-inset-bottom)); background: linear-gradient(to top, rgb(28 37 32 / .96) 55%, rgb(28 37 32 / 0)); transform: translateY(110%); transition: transform .3s var(--v-ease-out); display: none; }
-.dock .v-btn { width: 100%; justify-content: center; }
-.dock.is-on { transform: none; }
-@media (max-width: 860px) { .dock { display: block; } .foot { padding-bottom: calc(var(--v-7) + 5rem); } }
-@media (min-width: 861px) { .foot { padding-bottom: var(--v-7); } }
+/* ---------- полоса прокрутки слева ---------- */
+.vprog { position: fixed; left: 0; top: 0; width: 3px; height: 100%; background: var(--v-accent); transform-origin: top; transform: scaleY(0); z-index: 50; pointer-events: none; }
+
 </style>
 </head>
 <body>
 <div class="v-page" id="page">
-  <div data-v-progress></div>
+  <div class="vprog" id="vprog" aria-hidden="true"></div>
 
   <header class="bar" id="bar">
     <a class="bar__brand" href="#top">
-      <span class="bar__name">{{Имя Фамилия}}</span>
+      <span class="bar__name">Елена Фролова</span>
       <span class="bar__role">консультант по бацзы</span>
     </a>
     <nav class="bar__nav" aria-label="Разделы">
@@ -347,7 +345,7 @@ html, body { background: #1c2520; }
             <a class="v-btn" href="#zapis">Записаться на консультацию</a>
             <a class="v-btn v-btn--ghost" href="https://t.me/{{telegram}}" target="_blank" rel="noopener">Написать в Telegram</a>
           </div>
-          <p class="hero__note">Онлайн из любого города и лично в {{город: в Красноярске}}</p>
+          <p class="hero__note">Онлайн из любого города и лично в Красноярске</p>
         </div>
 
         <div class="v-copy v-copy--lead" data-v-cue="0.62 0.97 0.1 0.08">
@@ -564,7 +562,7 @@ html, body { background: #1c2520; }
         <ol class="steps" data-v-in data-v-stagger="80">
           <li><h3>Заявка</h3><p>Оставляете заявку на сайте или пишете в Telegram. Я отвечаю в течение {{срок ответа}}.</p></li>
           <li><h3>Данные и запрос</h3><p>Уточняю дату, время и город рождения и то, что сейчас важно разобрать.</p></li>
-          <li><h3>Консультация</h3><p>{{Онлайн по видеосвязи или лично}}, около {{длительность}}. Объясняю карту простыми словами, отвечаю на вопросы.</p></li>
+          <li><h3>Консультация</h3><p>Онлайн по видеосвязи или лично в Красноярске, около {{длительность}}. Объясняю карту простыми словами, отвечаю на вопросы.</p></li>
           <li><h3>План на руках</h3><p>После встречи у вас остаются выводы и конкретные шаги: {{что клиент получает: запись, PDF, план}}.</p></li>
         </ol>
         <div class="row kak__foot" data-v-in>
@@ -578,18 +576,21 @@ html, body { background: #1c2520; }
     <section class="v-section" id="obo-mne" data-v-act="flow" data-v-drift="#1c2520">
       <div class="v-wrap me">
         <figure class="me__photo" data-v-reveal="up" data-v-reveal-at="0.05 0.4">
-          <!-- Фото заказчицы: положить в assets/me.webp и раскомментировать -->
-          <!-- <img src="assets/me.webp" alt="{{Имя Фамилия}}" loading="lazy"> -->
-          <span>Здесь будет ваш портрет<br>3:4, естественный свет</span>
+          <img src="assets/me.webp" alt="Елена Фролова, консультант по бацзы" loading="lazy" width="900" height="1200">
         </figure>
         <div class="me__text" data-v-in data-v-stagger="70">
           <p class="kicker">Обо мне</p>
-          <h2 class="v-display">{{Имя Фамилия}}. Практик, предприниматель, консультант по бацзы</h2>
+          <h2 class="v-display">Елена Фролова. Практик, предприниматель, консультант по бацзы</h2>
           <p>Всё, о чём я говорю на консультациях, я прожила сама. Бацзы пришло в мою жизнь через цигун, когда я восстанавливалась после тяжёлой болезни. Понимание собственной природы изменило мою жизнь, и теперь я помогаю другим найти свою опору.</p>
-          <p class="me__quote">Истинная сила – не борьба с миром и не чужие маски, а знание своей природы и опора на себя</p>
+          <p class="me__quote">Истинная сила – не борьба с миром и не натягивание чужих масок, а знание своей природы и опора на себя. Бацзы помогает понять, где эта опора и кто я</p>
+          <details class="story">
+            <summary>Моя история</summary>
+            <p>Я выросла рядом с волевым, статусным отцом-руководителем, прошла через сложный брак, развод, через онкологию и рецидив. Сейчас я в стойкой ремиссии. В бацзы я пришла через цигун во время реабилитации, и понимание собственной природы полностью изменило мою жизнь. Этот путь научил меня не осуждать и видеть в людях их настоящую суть. Я работаю онкомейтом: профессионально и бережно сопровождаю людей, прошедших онкологию, через самые тёмные этапы.</p>
+          </details>
           <ul class="me__facts">
-            <li><span>Обучение</span>Школа цигун и бацзы в Санкт-Петербурге, продолжение обучения в Красноярске ({{названия школ, мастера, сертификаты}})</li>
-            <li><span>Бизнес</span>Много лет веду собственный бизнес ({{сфера}})</li>
+            <li><span>Обучение</span>Классическая школа бацзы Ming Li, Санкт-Петербург. Цигун и бацзы в школе «Шаолинь», Красноярск. Глубокая личная практика</li>
+            <li><span>Бизнес</span>Много лет веду собственный бизнес: госконтракты, торговля, туризм</li>
+            <li><span>Где работаю</span>Онлайн по видеосвязи и лично в Красноярске</li>
             <li><span>Онкомейт</span>Действующий онкомейт, прошла профессиональное обучение</li>
           </ul>
           <ul class="rules">
@@ -610,7 +611,7 @@ html, body { background: #1c2520; }
           <details><summary>Это гадание или предсказание?</summary><p>Нет. Карта не предсказывает события «по звёздам». Она показывает устройство: какие силы в вас сильны, каких не хватает и как это меняется по периодам. Дальше мы вместе решаем, что с этим делать.</p></details>
           <details><summary>Что нужно для разбора?</summary><p>Дата, время и город рождения. Если разбираем пару или партнёра по бизнесу, понадобятся те же данные второго человека.</p></details>
           <details><summary>Я не знаю точного времени рождения</summary><p>Разбор возможен по трём столпам: году, месяцу и дню. Часть выводов будет менее точной, и я скажу, какая именно.</p></details>
-          <details><summary>Онлайн или вживую?</summary><p>Онлайн по видеосвязи из любого города. Лично – в {{город: в Красноярске}}.</p></details>
+          <details><summary>Онлайн или вживую?</summary><p>Онлайн по видеосвязи из любого города. Лично – в Красноярске.</p></details>
           <details><summary>Сколько длится консультация и что я получу?</summary><p>Консультация длится {{длительность}}. После неё у вас остаются {{что клиент получает: запись, PDF-разбор, план действий}}.</p></details>
           <details><summary>Это конфиденциально?</summary><p>Да. Ваши данные и то, что вы рассказываете, не передаются третьим лицам и не публикуются. Истории клиентов я показываю только анонимно и с их согласия.</p></details>
         </div>
@@ -709,14 +710,13 @@ html, body { background: #1c2520; }
   <footer class="foot">
     <div class="v-wrap">
       <div class="foot__grid">
-        <div>{{Имя Фамилия}}, консультант по бацзы<br>{{ИП или самозанятая, ИНН}}</div>
+        <div>Елена Фролова, консультант по бацзы<br>{{ИП или самозанятая, ИНН}}</div>
         <div><a href="https://t.me/{{telegram}}" target="_blank" rel="noopener">Telegram</a> &nbsp; <a href="https://wa.me/{{whatsapp}}" target="_blank" rel="noopener">WhatsApp</a> &nbsp; <a href="policy.html">Политика конфиденциальности</a></div>
       </div>
       <p class="foot__legal">Консультации по бацзы не являются медицинской, психологической или юридической помощью и не заменяют обращение к специалистам.</p>
     </div>
   </footer>
 
-  <div class="dock" id="dock"><a class="v-btn" href="#zapis">Записаться на консультацию</a></div>
 </div>
 
 <script src="vibe.js"></script>
@@ -762,16 +762,13 @@ html, body { background: #1c2520; }
   var notime = document.getElementById("f-notime"), time = document.getElementById("f-time");
   notime.addEventListener("change", function () { time.disabled = notime.checked; if (notime.checked) time.value = ""; });
 
-  /* кнопка на телефоне: видна после первого экрана, прячется у формы */
-  var dock = document.getElementById("dock"), book = document.getElementById("zapis"), heroEl = document.getElementById("top");
-  var nearBook = false, pastHero = false, inMen = false;
-  var upd = function () { dock.classList.toggle("is-on", pastHero && !nearBook && !inMen); };
-  new IntersectionObserver(function (es) { es.forEach(function (e) { inMen = e.isIntersecting; upd(); }); }, { rootMargin: "-40% 0px -40% 0px" }).observe(document.getElementById("muzhchinam"));
-  new IntersectionObserver(function (es) { es.forEach(function (e) { nearBook = e.isIntersecting; upd(); }); }, { rootMargin: "0px 0px 10% 0px" }).observe(book);
-  window.addEventListener("scroll", function () { pastHero = window.scrollY > heroEl.offsetHeight * 0.5; upd(); }, { passive: true });
+  /* полоса прокрутки слева */
+  var prog = document.getElementById("vprog");
+  var onProg = function () { var d = Math.max(document.documentElement.scrollHeight - innerHeight, 1); prog.style.transform = "scaleY(" + Math.min(scrollY / d, 1).toFixed(4) + ")"; };
+  window.addEventListener("scroll", onProg, { passive: true }); window.addEventListener("resize", onProg); onProg();
 
   /* форма: заявки на почту через FormSubmit */
-  var FORM_ENDPOINT = "https://formsubmit.co/ajax/{{почта для заявок}}";
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/apanovich_80@mail.ru";
   var form = document.getElementById("form"), status = document.getElementById("form-status"), done = document.getElementById("done");
   var err = function (key, msg) {
     var f = form.querySelector('[data-f="' + key + '"]');
