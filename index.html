@@ -301,12 +301,15 @@ html, body { background: #1c2520; }
 .foot__legal { margin-top: var(--v-5); font-size: var(--v-t-xs); max-width: 70ch; }
 
 /* ---------- полоса прокрутки слева ---------- */
-.vprog { position: fixed; left: 0; top: 0; width: 3px; height: 100%; background: var(--v-accent); transform-origin: top; transform: scaleY(0); z-index: 50; pointer-events: none; }
+.vtrack { position: fixed; left: 0; top: 0; width: 5px; height: 100%; background: rgb(208 154 72 / .14); z-index: 49; pointer-events: none; }
+.vprog { position: fixed; left: 0; top: 0; width: 5px; height: 100%; background: var(--v-accent); box-shadow: 0 0 10px rgb(208 154 72 / .45); transform-origin: top; transform: scaleY(0); z-index: 50; pointer-events: none; }
+@media (max-width: 860px) { .vtrack, .vprog { width: 3px; } .vprog { box-shadow: none; } }
 
 </style>
 </head>
 <body>
 <div class="v-page" id="page">
+  <div class="vtrack" aria-hidden="true"></div>
   <div class="vprog" id="vprog" aria-hidden="true"></div>
 
   <header class="bar" id="bar">
